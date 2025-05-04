@@ -39,10 +39,7 @@ router.post("/signup", async (req, res) => {
     return res.redirect("/");
   });
 
-  const existingUser = await User.findOne({ email: "alister@gmail.com" });
-if (!existingUser) {
-    await User.create({ email: "alister@gmail.com", ... });
-}
+ 
 
   
 module.exports = router;
