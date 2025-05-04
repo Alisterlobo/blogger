@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <title>Homepage</title>
+  <style>
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .blog-body {
+      white-space: pre-wrap;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /*  */
+
+    
+    .comment-box {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .blog-cover {
+      width: 100%;
+      max-width: 500px; /* limits the width on desktop */
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.5rem;
+        padding: 0 10px;
+      }
+
+      .profile-img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .blog-body {
+        font-size: 0.95rem;
+        padding: 0 10px;
+
+        
+      }
+
+      
+    }
+  </style>
+</head>
+<body>
+  <%- include('./partials/nav') %>
+
+ 
+
+
+  <div class="container mt-4">
+    <!-- Blog Title -->
+    <h1 class="text-center mb-3"><%= blog.title %></h1>
+
+    <!-- Blog Cover Image -->
+    <!-- Blog Cover Image -->
+<div class="d-flex justify-content-center mb-4">
+  <img src="<%= blog.coverImageUrl %>" alt="Cover Image" class="blog-cover">
+</div>
+
+
+    <!-- Blog Body -->
+    <div class="blog-body mb-4">
+      <%= blog.body %>
+    </div>
+
+    <!-- Author Information -->
+    <div class="d-flex align-items-center mb-5">
+      <img src="<%= blog.createdBy.profileImageUrl %>" class="profile-img" alt="Author Image">
+      <strong><%= blog.createdBy.fullName %></strong>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="mb-5">
+      <h3>Comments [<%= comments.length %>]</h3>
+
+      <% if (locals.user) { %>
+        <!-- <form action="/blog/comment/<%= blog._id %>" method="POST" class="mb-3">
+          <div class="input-group">
+            <input 
+              type="text" 
+              name="content" 
+              class="form-control" 
+              placeholder="Enter your comment"
+              required
+            > <br>
+            <button class="btn btn-primary" type="submit">Add</button>
+          </div>
+        </form> -->
+        <form action="/blog/comment/<%= blog._id %>" method="POST" class="mb-3">
+          <div class="mb-2">
+            <input 
+              type="text" 
+              name="content" 
+              class="form-control" 
+              placeholder="Enter your comment"
+              required
+            >
+          </div>
+          <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+      <% } %>
+
+      <% comments.forEach(comment => { %>
+        <div class="comment-box d-flex align-items-start">
+          <img src="<%= comment.createdBy.profileImageUrl %>" class="profile-img" alt="User Image">
+          <div>
+            <strong><%= comment.createdBy.fullName %></strong>
+            <div class="blog-body mt-1"><%= comment.content %></div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+</html>

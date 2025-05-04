@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('./partials/head') %>
+        <title>Add New Blog</title>
+
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+    <style>
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+    
+        label {
+            font-weight: 500;
+            color: #333;
+        }
+    
+        input[type="file"]::file-selector-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+    
+        input[type="file"]::file-selector-button:hover {
+            background-color: #0056b3;
+        }
+    
+        textarea {
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+    
+        button.btn-primary {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+    
+        button.btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+    
+        .container {
+            max-width: 700px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+        <div class="container">
+            <form action="/blog" method="post" enctype="multipart/form-data">
+                  <!-- upload -->
+                  <div class="mb-3">
+                    <label for="coverImage" class="form-label">Cover Image</label>
+                    <input 
+                    type="file" 
+                    class="form-control" 
+                    id="coverImage" name="coverImage" 
+                    aria-describedby="coverImage">
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="title" name="title" 
+                    aria-describedby="title">
+                </div>
+
+              
+
+                <div class="mb-3">
+                    <label for="body">Body</label>
+                    <textarea name="body" class="form-control" id="body"></textarea>   
+                </div> <br>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary">Submit</button>   
+                </div>
+            </form>
+        </div>
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>

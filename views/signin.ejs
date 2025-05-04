@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head')  %>
+  <title>SIGNIN</title>
+
+  <style>
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0d6efd;
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .auth-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #f0f4ff, #e2eafc);
+    }
+
+    .auth-img {
+      object-fit: cover;
+      height: 100%;
+      border-top-left-radius: 0.75rem;
+      border-bottom-left-radius: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .auth-img {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('./partials/nav')  %>
+
+  <div class="auth-wrapper">
+    <div class="card card-hover shadow rounded-4 border-0 overflow-hidden" style="max-width: 900px;">
+      <div class="row g-0">
+        <!-- Left Image -->
+        <div class="col-md-6 d-none d-md-block">
+          <img src="/images/signin.jpg" alt="Sign in" class="w-100 auth-img">
+        </div>
+
+        <!-- Right Form -->
+        <div class="col-md-6 p-4 p-md-5 bg-white">
+          <div class="card-body p-4">
+
+            <!-- Mobile image (only shows on small screens) -->
+            <div class="d-block d-md-none text-center mb-3">
+              <img src="/images/signin.jpg" alt="Sign in" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+            </div>
+          <h4 class="text-center mb-4 text-primary fw-bold">Sign In</h4>
+          <form action="/user/signin" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input 
+                type="email" 
+                name="email"
+                class="form-control" 
+                id="exampleInputEmail1" 
+                aria-describedby="emailHelp"
+              >
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input 
+                type="password" 
+                name="password"
+                class="form-control" 
+                id="exampleInputPassword1"
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/scripts')  %>
+</body>
+</html>
