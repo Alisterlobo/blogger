@@ -19,7 +19,7 @@ const {
   
 // console.log("Myname",process.env.myname)
 const app = express();
-const  PORT = process.env.PORT || 8000;
+const  PORT = process.env.PORT || 10000;
 
 // $env:MONGO_URL = "mongodb://127.0.0.1:27017/blogy"
 mongoose
